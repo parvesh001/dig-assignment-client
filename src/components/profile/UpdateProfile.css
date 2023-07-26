@@ -1,0 +1,10 @@
+.update-container{
+    width: 96vw;
+
+}
+
+@media screen and (min-width:920px){
+    .update-container{
+        width: 50vw!important;
+    };
+}

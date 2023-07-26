@@ -7,6 +7,7 @@ export const AuthContext = createContext({
   isLogedIn: false,
   login: (user, token) => {},
   logout: () => {},
+  updateUser:()=>{}
 });
 
 const AuthContextProvider = ({ children }) => {
@@ -33,6 +34,11 @@ const AuthContextProvider = ({ children }) => {
     navigate("/");
   };
 
+  const updateUser = (user)=>{
+    setUser(user);
+    localStorage.setItem("user", JSON.stringify(user));
+  }
+
 
   const values = {
     user,
@@ -40,6 +46,7 @@ const AuthContextProvider = ({ children }) => {
     isLogedIn,
     login,
     logout,
+    updateUser
   };
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
