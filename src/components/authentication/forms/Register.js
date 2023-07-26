@@ -3,89 +3,94 @@ import Input from "../../../UIs/Input";
 import useInput from "../../../hooks/useInput";
 import Alert from "../../../UIs/Alert";
 import "./Register.css";
+import { AuthContext } from "../../../context/authContext";
 
 export default function Registration({ onLogin }) {
   const [isLoading, setIsLoading] = useState(false);
   const [alert, setAlert] = useState(null);
-  //   const { login } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
 
   const {
-    authorInput: authorNameInput,
-    authorInputIsValid: authorNameInputIsValid,
-    hasError: authorNameInputHasError,
-    authorInputChangeHandler: authorNameInputChangeHandler,
-    authorInputBlurHandler: authorNameInputBlurHandler,
+    userInput: userNameInput,
+    userInputIsValid: userNameInputIsValid,
+    hasError: userNameInputHasError,
+    userInputChangeHandler: userNameInputChangeHandler,
+    userInputBlurHandler: userNameInputBlurHandler,
   } = useInput((value) =>
     /^[a-zA-ZÀ-ÖØ-öø-ÿ]+([ '-][a-zA-ZÀ-ÖØ-öø-ÿ]+)*$/.test(value)
   );
 
   const {
-    authorInput: authorEmailInput,
-    authorInputIsValid: authorEmailInputIsValid,
-    hasError: authorEmailInputHasError,
-    authorInputChangeHandler: authorEmailInputChangeHandler,
-    authorInputBlurHandler: authorEmailInputBlurHandler,
+    userInput: userEmailInput,
+    userInputIsValid: userEmailInputIsValid,
+    hasError: userEmailInputHasError,
+    userInputChangeHandler: userEmailInputChangeHandler,
+    userInputBlurHandler: userEmailInputBlurHandler,
   } = useInput((value) =>
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value)
   );
 
   const {
-    authorInput: authorPasswordInput,
-    authorInputIsValid: authorPasswordInputIsValid,
-    hasError: authorPasswordInputHasError,
-    authorInputChangeHandler: authorPasswordInputChangeHandler,
-    authorInputBlurHandler: authorPasswordInputBlurHandler,
+    userInput: userPasswordInput,
+    userInputIsValid: userPasswordInputIsValid,
+    hasError: userPasswordInputHasError,
+    userInputChangeHandler: userPasswordInputChangeHandler,
+    userInputBlurHandler: userPasswordInputBlurHandler,
   } = useInput((value) => value.trim().length > 5);
 
   const {
-    authorInput: authorConfirmPasswordInput,
-    authorInputIsValid: authorConfirmPasswordInputIsValid,
-    hasError: authorConfirmPasswordInputHasError,
-    authorInputChangeHandler: authorConfirmPasswordInputChangeHandler,
-    authorInputBlurHandler: authorConfirmPasswordInputBlurHandler,
-  } = useInput((value) => value === authorPasswordInput);
+    userInput: userConfirmPasswordInput,
+    userInputIsValid: userConfirmPasswordInputIsValid,
+    hasError: userConfirmPasswordInputHasError,
+    userInputChangeHandler: userConfirmPasswordInputChangeHandler,
+    userInputBlurHandler: userConfirmPasswordInputBlurHandler,
+  } = useInput((value) => value === userPasswordInput);
 
   let formIsValid = false;
   if (
-    authorNameInputIsValid &&
-    authorEmailInputIsValid &&
-    authorPasswordInputIsValid &&
-    authorConfirmPasswordInputIsValid
+    userNameInputIsValid &&
+    userEmailInputIsValid &&
+    userPasswordInputIsValid &&
+    userConfirmPasswordInputIsValid
   ) {
     formIsValid = true;
   }
 
   const registrationFormSubmitHandler = async (event) => {
     event.preventDefault();
-    // if (!formIsValid) return;
-    // setIsLoading(true);
-    // try {
-    //   const data = await sendRegistrationRequest({
-    //     endpoint: "authors/register",
-    //     method: "POST",
-    //     body: JSON.stringify({
-    //       name: authorNameInput,
-    //       email: authorEmailInput,
-    //       password: authorPasswordInput,
-    //       confirmPassword: authorConfirmPasswordInput,
-    //     }),
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   });
-    //   setIsLoading(false);
-    //   setAlert({ scenario: "success", message: "Registered successfully" });
-    //   setTimeout(() => login(data.author, data.token), 1000);
-    // } catch (err) {
-    //   setIsLoading(false);
-    //   setAlert({ scenario: "error", message: err.message });
-    // }
+    if (!formIsValid) return;
+    setIsLoading(true);
+    try {
+      const response = await fetch("http://localhost:8080/users", {
+        method: "POST",
+        body: JSON.stringify({
+          name: userNameInput,
+          email: userEmailInput,
+          password: userPasswordInput,
+          confirmPassword: userConfirmPasswordInput,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message);
+      }
+      const data = await response.json();
+      setIsLoading(false);
+      setAlert({ scenario: "success", message: "Registered successfully" });
+      setTimeout(() => login(data.user, data.token), 1000);
+    } catch (err) {
+      setIsLoading(false);
+      setAlert({ scenario: "error", message: err.message });
+    }
   };
 
-  const nameInputClass = authorNameInputHasError ? "is-invalid" : "";
-  const emailInputClass = authorEmailInputHasError ? "is-invalid" : "";
-  const passInputClass = authorPasswordInputHasError ? "is-invalid" : "";
-  const confirmPassInputClass = authorConfirmPasswordInputHasError
+  const nameInputClass = userNameInputHasError ? "is-invalid" : "";
+  const emailInputClass = userEmailInputHasError ? "is-invalid" : "";
+  const passInputClass = userPasswordInputHasError ? "is-invalid" : "";
+  const confirmPassInputClass = userConfirmPasswordInputHasError
     ? "is-invalid"
     : "";
 
@@ -106,36 +111,36 @@ export default function Registration({ onLogin }) {
         </div>
         <form className="m-b-3" onSubmit={registrationFormSubmitHandler}>
           <Input
-            id="authorName"
+            id="userName"
             label="Name"
             placeholder="Parvesh"
             type="text"
-            value={authorNameInput}
+            value={userNameInput}
             className={nameInputClass}
-            onChange={authorNameInputChangeHandler}
-            onBlur={authorNameInputBlurHandler}
+            onChange={userNameInputChangeHandler}
+            onBlur={userNameInputBlurHandler}
             invalidFeedback="Please mention valid name"
           />
           <Input
-            id="authorEmail"
+            id="userEmail"
             label="Email"
-            placeholder="author@gmail.com"
+            placeholder="user@gmail.com"
             type="email"
-            value={authorEmailInput}
+            value={userEmailInput}
             className={emailInputClass}
-            onChange={authorEmailInputChangeHandler}
-            onBlur={authorEmailInputBlurHandler}
+            onChange={userEmailInputChangeHandler}
+            onBlur={userEmailInputBlurHandler}
             invalidFeedback="Please mention valid email"
           />
           <Input
-            id="authorPassword"
+            id="userPassword"
             label="Password"
             placeholder="*********"
             type="password"
-            value={authorPasswordInput}
+            value={userPasswordInput}
             className={passInputClass}
-            onChange={authorPasswordInputChangeHandler}
-            onBlur={authorPasswordInputBlurHandler}
+            onChange={userPasswordInputChangeHandler}
+            onBlur={userPasswordInputBlurHandler}
             invalidFeedback="Password must be six characters long"
           />
           <Input
@@ -143,10 +148,10 @@ export default function Registration({ onLogin }) {
             label="Confirm Password"
             placeholder="*********"
             type="password"
-            value={authorConfirmPasswordInput}
+            value={userConfirmPasswordInput}
             className={confirmPassInputClass}
-            onChange={authorConfirmPasswordInputChangeHandler}
-            onBlur={authorConfirmPasswordInputBlurHandler}
+            onChange={userConfirmPasswordInputChangeHandler}
+            onBlur={userConfirmPasswordInputBlurHandler}
             invalidFeedback="Both the passwords must match"
           />
 

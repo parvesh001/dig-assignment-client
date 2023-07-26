@@ -1,24 +1,24 @@
 import { useState } from "react";
 
 export default function useInput(checkValidation, initialValue) {
-  const [authorInput, setAuthorInput] = useState(initialValue || "");
+  const [userInput, setUserInput] = useState(initialValue || "");
   const [inputIsTouched, setInputIsTouched] = useState(false);
 
-  const authorInputIsValid = checkValidation(authorInput);
-  const hasError = !authorInputIsValid && inputIsTouched;
+  const userInputIsValid = checkValidation(userInput);
+  const hasError = !userInputIsValid && inputIsTouched;
 
-  const authorInputChangeHandler = (event) => {
-    setAuthorInput(event.target.value);
+  const userInputChangeHandler = (event) => {
+    setUserInput(event.target.value);
   };
-  const authorInputBlurHandler = () => {
+  const userInputBlurHandler = () => {
     setInputIsTouched(true);
   };
 
   return {
-    authorInput,
-    authorInputIsValid,
+    userInput,
+    userInputIsValid,
     hasError,
-    authorInputChangeHandler,
-    authorInputBlurHandler,
+    userInputChangeHandler,
+    userInputBlurHandler,
   };
 }
