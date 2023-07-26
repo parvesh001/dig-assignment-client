@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Layout from "./components/layout/Layout";
+import { Route, Routes, Navigate } from "react-router-dom";
+import AuthenticationPage from "./pages/AuthenticationPage";
+import UsersPage from "./pages/UsersPage";
+import NotFoundPage from "./pages/NotFoundPage";
+import ProfilePage from "./pages/ProfilePage";
 
-function App() {
+export default function App() {
+  const login = false;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <Routes>
+        {!login && (
+          <Route path="/registration" element={<AuthenticationPage />} />
+        )}
+        {!login && (
+          <Route path="/" element={<Navigate replace to={`/registration`} />} />
+        )}
+        {login && (
+          <Route path="/" element={<Navigate replace to={`/users`} />} />
+        )}
+        {login && <Route path="/users" element={<UsersPage />} />}
+        {login && <Route path="/profile" element={<ProfilePage />} />}
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </Layout>
   );
 }
-
-export default App;
