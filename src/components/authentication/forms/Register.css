@@ -1,0 +1,10 @@
+.register-container{
+    width: 96vw;
+
+}
+
+@media screen and (min-width:920px){
+    .register-container{
+        width: 50vw!important;
+    };
+}

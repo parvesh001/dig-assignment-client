@@ -1,0 +1,10 @@
+.login-container{
+    width: 96vw;
+
+}
+
+@media screen and (min-width:920px){
+    .login-container{
+        width: 50vw!important;
+    };
+}

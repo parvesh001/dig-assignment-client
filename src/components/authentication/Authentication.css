@@ -1,0 +1,9 @@
+.authentication-container {
+  height: 78vh;
+}
+
+@media screen and (min-width: 920px) {
+  .authentication-container {
+    height: 100vh !important;
+  }
+}
