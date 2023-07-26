@@ -1,0 +1,12 @@
+.search-form {
+  width: 96vw;
+  display: flex;
+  margin: auto;
+  gap: 5px;
+}
+
+@media only screen and (min-width: 920px) {
+  .search-form {
+    width: 50vw;
+  }
+}
