@@ -1,0 +1,11 @@
+.users-container{
+    height: 80vh;
+    margin-top: 3rem;
+}
+
+@media only screen and (min-width: 920px) {
+    .users-container {
+      height: 85vh;
+    }
+  }
+  
