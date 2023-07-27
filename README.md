@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+# DIG SIDEKICK ASSIGNMENT
+This is the front-end part of the DIG SIDEKICK ASSIGNMENT powered with React. This is small (only contains prescribed functionality) but beautiful front-end
+project. Here, users can sign up (creation), log in, see their profile, update their credentials, and see other users with searching and pagination. Users have also 
+the option of deleting their profile or logout. Route protection is ensured for restricting unauthorized access to certain routes and APIs. Besides, proper error handling is applied with alert UI to notify users about the error. The popular library bootstrap is used for styling UIs. The project is well-structured to minimize the chances of bugs and meet the scaling-up demand. Below is the complete instruction on how to use this project.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+NOTE: You can find the backend part of this project here 👉👉https://github.com/parvesh001/dig-assignment-server
 
-## Available Scripts
+## FEATURES
+- Complete integration with server
+- Sign Up & Log in (Authentication)
+- Authorization
+- Users can update credentials
+- Users can delete the profile
+- Users can search for other users
+- Pagination
+- Route Protection
+- Error Handling
+- Notification
+- Enhanced UIs with Bootstrap
 
-In the project directory, you can run:
+  ## INSTALLATION GUIDE
+To get started with the web service locally, follow these steps:
+1. Clone the repository.
+2. Navigate to the project directory.
+3. Install dependencies.
+7. Start the development server.
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+NOTE: Before initializing it you must initialize the backend service as it depended on the backend service.
