@@ -5,6 +5,10 @@ the option of deleting their profile or logout. Route protection is ensured for 
 
 NOTE: You can find the backend part of this project here 👉👉https://github.com/parvesh001/dig-assignment-server
 
+NOTE: Before initializing it you must initialize the backend service as it depended on the backend service.
+Backend service link   👉https://github.com/parvesh001/dig-assignment-server
+
+
 ## FEATURES
 - Complete integration with server
 - Sign Up & Log in (Authentication)
@@ -24,6 +28,3 @@ To get started with the web service locally, follow these steps:
 2. Navigate to the project directory.
 3. Install dependencies.
 7. Start the development server.
-
-NOTE: Before initializing it you must initialize the backend service as it depended on the backend service.
-Backend service link   👉https://github.com/parvesh001/dig-assignment-server
