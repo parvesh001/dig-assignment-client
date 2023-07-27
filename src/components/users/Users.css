@@ -1,6 +1,6 @@
 .users-container{
     height: 80vh;
-    margin-top: 3rem;
+    margin-block: 3rem;
 }
 
 @media only screen and (min-width: 920px) {
